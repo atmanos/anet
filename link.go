@@ -50,7 +50,7 @@ func (e LinkEndpoint) MaxHeaderLength() uint16        { return uint16(EthernetHe
 func (e LinkEndpoint) LinkAddress() tcpip.LinkAddress { return e.mac }
 
 // WritePacket implements stack.LinkEndpoint
-func (e *LinkEndpoint) WritePacket(r *stack.Route, hdr *buffer.Prependable, payload buffer.View, protocol tcpip.NetworkProtocolNumber) error {
+func (e *LinkEndpoint) WritePacket(r *stack.Route, hdr *buffer.Prependable, payload buffer.View, protocol tcpip.NetworkProtocolNumber) *tcpip.Error {
 	if r.RemoteLinkAddress == "" {
 		// TODO: I think we would want to save this packet,
 		// call LinkAddressRequest, and then deliver after the address
